@@ -286,6 +286,82 @@ body {
     color: #3b82f6;
 }
 
+/* Category Selector Styles */
+.category-selector {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: rgba(147, 197, 253, 0.2);
+    border: 2px solid rgba(147, 197, 253, 0.3);
+    color: #1e40af;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.category-btn:hover {
+    background: rgba(147, 197, 253, 0.3);
+    border-color: rgba(147, 197, 253, 0.5);
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* Pagination Styles */
+.pagination {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(147, 197, 253, 0.2);
+}
+
+.pagination-btn {
+    background: rgba(147, 197, 253, 0.2);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    color: #1e40af;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin: 0 0.5rem;
+}
+
+.pagination-btn:hover {
+    background: rgba(147, 197, 253, 0.3);
+    border-color: rgba(147, 197, 253, 0.5);
+    transform: translateY(-2px);
+}
+
+.pagination-btn:disabled {
+    background: rgba(147, 197, 253, 0.1);
+    color: rgba(30, 64, 175, 0.5);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.page-info {
+    color: #1e40af;
+    font-weight: 600;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+}
+
 /* Login Modal */
 .modal {
     display: none;
@@ -769,5 +845,26 @@ body {
     
     .package-features li:hover {
         transform: translateX(3px);
+    }
+    
+    /* Category and pagination responsive */
+    .category-buttons {
+        gap: 0.5rem;
+    }
+    
+    .category-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .pagination-btn {
+        padding: 0.5rem 1rem;
+        margin: 0 0.3rem;
+        font-size: 0.9rem;
+    }
+    
+    .page-info {
+        font-size: 1rem;
+        margin: 0 0.5rem;
     }
 }

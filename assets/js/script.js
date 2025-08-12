@@ -160,6 +160,153 @@ function removeStudent(studentId) {
     }
 }
 
+// Leaderboard system variables
+let currentCategory = 1;
+let currentPage = 1;
+const studentsPerPage = 10;
+let leaderboardData = {};
+
+// Mock data for leaderboard (100 students across 5 categories)
+function generateMockData() {
+    const schools = [
+        'SMK Taman Desa', 'SMK Bandar Baru', 'SMK Johor Bahru', 'SMK Kota Bharu', 'SMK Ipoh',
+        'SMK Kuantan', 'SMK Alor Setar', 'SMK Melaka', 'SMK Seremban', 'SMK Shah Alam',
+        'SMK Petaling Jaya', 'SMK Subang Jaya', 'SMK Klang', 'SMK Port Dickson', 'SMK Nilai'
+    ];
+    
+    const states = [
+        'Kuala Lumpur', 'Selangor', 'Johor', 'Kelantan', 'Perak', 'Pahang', 'Kedah', 'Melaka',
+        'Negeri Sembilan', 'Terengganu', 'Perlis', 'Sabah', 'Sarawak', 'Putrajaya', 'Labuan'
+    ];
+    
+    const categories = ['Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5'];
+    
+    const names = [
+        'Ahmad Faiz', 'Siti Nurhaliza', 'Muhammad Iqbal', 'Nur Aisyah', 'Haikal Zafran',
+        'Fatimah Zahra', 'Zulkifli Rahman', 'Maryam Sofea', 'Omar Ali', 'Khadijah',
+        'Hassan Rahman', 'Zainab Yusuf', 'Aminah Binti Ali', 'Muhammad Irfan', 'Siti Mariam',
+        'Zul Hafiz', 'Nurul Ain', 'Ahmad Rosli', 'Fatimah Binti', 'Muhammad Zain',
+        'Nurul Huda', 'Ahmad Zulkarnain', 'Siti Fatimah', 'Muhammad Amin', 'Nurul Izzah',
+        'Ahmad Firdaus', 'Siti Aisyah', 'Muhammad Hafiz', 'Nurul Ain', 'Ahmad Syafiq',
+        'Siti Nurul', 'Muhammad Aziz', 'Nurul Huda', 'Ahmad Fahmi', 'Siti Mariam',
+        'Muhammad Irfan', 'Nurul Ain', 'Ahmad Zain', 'Siti Fatimah', 'Muhammad Amin',
+        'Nurul Izzah', 'Ahmad Firdaus', 'Siti Aisyah', 'Muhammad Hafiz', 'Nurul Ain',
+        'Ahmad Syafiq', 'Siti Nurul', 'Muhammad Aziz', 'Nurul Huda', 'Ahmad Fahmi',
+        'Siti Mariam', 'Muhammad Irfan', 'Nurul Ain', 'Ahmad Zain', 'Siti Fatimah',
+        'Muhammad Amin', 'Nurul Izzah', 'Ahmad Firdaus', 'Siti Aisyah', 'Muhammad Hafiz',
+        'Nurul Ain', 'Ahmad Syafiq', 'Siti Nurul', 'Muhammad Aziz', 'Nurul Huda',
+        'Ahmad Fahmi', 'Siti Mariam', 'Muhammad Irfan', 'Nurul Ain', 'Ahmad Zain',
+        'Siti Fatimah', 'Muhammad Amin', 'Nurul Izzah', 'Ahmad Firdaus', 'Siti Aisyah',
+        'Muhammad Hafiz', 'Nurul Ain', 'Ahmad Syafiq', 'Siti Nurul', 'Muhammad Aziz',
+        'Nurul Huda', 'Ahmad Fahmi', 'Siti Mariam', 'Muhammad Irfan', 'Nurul Ain',
+        'Ahmad Zain', 'Siti Fatimah', 'Muhammad Amin', 'Nurul Izzah', 'Ahmad Firdaus',
+        'Siti Aisyah', 'Muhammad Hafiz', 'Nurul Ain', 'Ahmad Syafiq', 'Siti Nurul',
+        'Muhammad Aziz', 'Nurul Huda', 'Ahmad Fahmi', 'Siti Mariam', 'Muhammad Irfan',
+        'Nurul Ain', 'Ahmad Zain', 'Siti Fatimah', 'Muhammad Amin', 'Nurul Izzah'
+    ];
+    
+    // Generate data for each category
+    for (let cat = 1; cat <= 5; cat++) {
+        leaderboardData[cat] = [];
+        
+        for (let i = 0; i < 100; i++) {
+            const score = Math.floor(Math.random() * 50000) + 50000; // Random score between 50,000-100,000
+            leaderboardData[cat].push({
+                rank: i + 1,
+                name: names[i % names.length],
+                school: schools[Math.floor(Math.random() * schools.length)],
+                state: states[Math.floor(Math.random() * states.length)],
+                category: categories[cat - 1],
+                score: score
+            });
+        }
+        
+        // Sort by score (highest first)
+        leaderboardData[cat].sort((a, b) => b.score - a.score);
+        
+        // Update ranks after sorting
+        leaderboardData[cat].forEach((student, index) => {
+            student.rank = index + 1;
+        });
+    }
+}
+
+// Category selection function
+function selectCategory(category) {
+    currentCategory = category;
+    currentPage = 1;
+    
+    // Update active button
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Refresh leaderboard
+    displayLeaderboard();
+}
+
+// Display leaderboard data
+function displayLeaderboard() {
+    const tbody = document.getElementById('leaderboard-body');
+    const startIndex = (currentPage - 1) * studentsPerPage;
+    const endIndex = startIndex + studentsPerPage;
+    const currentData = leaderboardData[currentCategory].slice(startIndex, endIndex);
+    
+    tbody.innerHTML = '';
+    
+    currentData.forEach((student, index) => {
+        const row = document.createElement('tr');
+        
+        let rankDisplay = student.rank;
+        if (student.rank === 1) rankDisplay = '🥇 1';
+        else if (student.rank === 2) rankDisplay = '🥈 2';
+        else if (student.rank === 3) rankDisplay = '🥉 3';
+        
+        row.innerHTML = `
+            <td class="rank">${rankDisplay}</td>
+            <td>${student.name}</td>
+            <td>${student.school}</td>
+            <td>${student.state}</td>
+            <td>${student.category}</td>
+            <td>${student.score.toLocaleString()}</td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+    
+    updatePagination();
+}
+
+// Update pagination controls
+function updatePagination() {
+    const totalPages = Math.ceil(leaderboardData[currentCategory].length / studentsPerPage);
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageInfo = document.getElementById('page-info');
+    
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+    
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+}
+
+// Navigation functions
+function previousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayLeaderboard();
+    }
+}
+
+function nextPage() {
+    const totalPages = Math.ceil(leaderboardData[currentCategory].length / studentsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayLeaderboard();
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     // Add some interactive animations
@@ -189,6 +336,10 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.background = 'rgba(59, 130, 246, 0.12)';
         }
     });
+
+    // Initialize leaderboard
+    generateMockData();
+    displayLeaderboard();
 
     console.log('My UTQH Platform initialized successfully!');
 });

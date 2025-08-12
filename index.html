@@ -202,6 +202,19 @@
         <!-- Leaderboard Page -->
         <div id="leaderboard" class="page">
             <h1 style="margin-bottom: 2rem;">National Leaderboard</h1>
+            
+            <!-- Category Selection -->
+            <div class="category-selector glass" style="margin-bottom: 2rem; padding: 1.5rem;">
+                <h3 style="color: #1e40af; margin-bottom: 1rem; text-align: center;">Select Game Category</h3>
+                <div class="category-buttons">
+                    <button class="category-btn active" onclick="selectCategory(1)">Category 1</button>
+                    <button class="category-btn" onclick="selectCategory(2)">Category 2</button>
+                    <button class="category-btn" onclick="selectCategory(3)">Category 3</button>
+                    <button class="category-btn" onclick="selectCategory(4)">Category 4</button>
+                    <button class="category-btn" onclick="selectCategory(5)">Category 5</button>
+                </div>
+            </div>
+            
             <div class="glass">
                 <table class="leaderboard-table">
                     <thead>
@@ -214,73 +227,17 @@
                             <th>Score</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="rank">🥇 1</td>
-                            <td>Ahmad Faiz</td>
-                            <td>SMK Taman Desa</td>
-                            <td>Kuala Lumpur</td>
-                            <td>Form 5</td>
-                            <td>98,500</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">🥈 2</td>
-                            <td>Siti Nurhaliza</td>
-                            <td>SMK Bandar Baru</td>
-                            <td>Selangor</td>
-                            <td>Form 4</td>
-                            <td>97,200</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">🥉 3</td>
-                            <td>Muhammad Iqbal</td>
-                            <td>SMK Johor Bahru</td>
-                            <td>Johor</td>
-                            <td>Form 5</td>
-                            <td>95,800</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">4</td>
-                            <td>Nur Aisyah</td>
-                            <td>SMK Kota Bharu</td>
-                            <td>Kelantan</td>
-                            <td>Form 3</td>
-                            <td>94,300</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">5</td>
-                            <td>Haikal Zafran</td>
-                            <td>SMK Ipoh</td>
-                            <td>Perak</td>
-                            <td>Form 4</td>
-                            <td>93,100</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">6</td>
-                            <td>Fatimah Zahra</td>
-                            <td>SMK Kuantan</td>
-                            <td>Pahang</td>
-                            <td>Form 5</td>
-                            <td>92,700</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">7</td>
-                            <td>Zulkifli Rahman</td>
-                            <td>SMK Alor Setar</td>
-                            <td>Kedah</td>
-                            <td>Form 3</td>
-                            <td>91,900</td>
-                        </tr>
-                        <tr>
-                            <td class="rank">8</td>
-                            <td>Maryam Sofea</td>
-                            <td>SMK Melaka</td>
-                            <td>Melaka</td>
-                            <td>Form 4</td>
-                            <td>91,400</td>
-                        </tr>
+                    <tbody id="leaderboard-body">
+                        <!-- Data will be populated by JavaScript -->
                     </tbody>
                 </table>
+                
+                <!-- Pagination -->
+                <div class="pagination glass" style="margin-top: 2rem; padding: 1.5rem; text-align: center;">
+                    <button class="pagination-btn" onclick="previousPage()" id="prev-btn">← Previous</button>
+                    <span class="page-info" id="page-info">Page 1 of 10</span>
+                    <button class="pagination-btn" onclick="nextPage()" id="next-btn">Next →</button>
+                </div>
             </div>
         </div>
 
