@@ -162,7 +162,7 @@ function removeStudent(studentId) {
 
 // Leaderboard system variables
 let currentCategory = 1;
-let currentPage = 1;
+let currentLeaderboardPage = 1;
 const studentsPerPage = 10;
 let leaderboardData = {};
 
@@ -234,7 +234,7 @@ function generateMockData() {
 // Category selection function
 function selectCategory(category) {
     currentCategory = category;
-    currentPage = 1;
+    currentLeaderboardPage = 1;
     
     // Update active button
     document.querySelectorAll('.category-btn').forEach(btn => {
@@ -249,7 +249,7 @@ function selectCategory(category) {
 // Display leaderboard data
 function displayLeaderboard() {
     const tbody = document.getElementById('leaderboard-body');
-    const startIndex = (currentPage - 1) * studentsPerPage;
+    const startIndex = (currentLeaderboardPage - 1) * studentsPerPage;
     const endIndex = startIndex + studentsPerPage;
     const currentData = leaderboardData[currentCategory].slice(startIndex, endIndex);
     
@@ -285,24 +285,24 @@ function updatePagination() {
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
     
-    prevBtn.disabled = currentPage === 1;
-    nextBtn.disabled = currentPage === totalPages;
+    prevBtn.disabled = currentLeaderboardPage === 1;
+    nextBtn.disabled = currentLeaderboardPage === totalPages;
     
-    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    pageInfo.textContent = `Page ${currentLeaderboardPage} of ${totalPages}`;
 }
 
 // Navigation functions
 function previousPage() {
-    if (currentPage > 1) {
-        currentPage--;
+    if (currentLeaderboardPage > 1) {
+        currentLeaderboardPage--;
         displayLeaderboard();
     }
 }
 
 function nextPage() {
     const totalPages = Math.ceil(leaderboardData[currentCategory].length / studentsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
+    if (currentLeaderboardPage < totalPages) {
+        currentLeaderboardPage++;
         displayLeaderboard();
     }
 }
