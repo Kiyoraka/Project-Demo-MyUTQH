@@ -109,6 +109,57 @@ function toggleStudents(teacherId) {
     }
 }
 
+// Subscription system functions
+function calculatePrice() {
+    const studentCount = parseInt(document.getElementById('studentCount').value);
+    const totalPrice = studentCount * 1; // RM1 per student
+    document.querySelector('.total-price').textContent = `Total: RM ${totalPrice}/month`;
+}
+
+function subscribePlan() {
+    const studentCount = parseInt(document.getElementById('studentCount').value);
+    const totalPrice = studentCount * 1;
+    
+    if (studentCount < 1) {
+        alert('Please enter a valid number of students (minimum 1)');
+        return;
+    }
+    
+    if (studentCount > 1000) {
+        alert('Maximum 1000 students allowed per teacher account');
+        return;
+    }
+    
+    // Show subscription confirmation
+    const confirmed = confirm(`Confirm subscription for ${studentCount} students at RM ${totalPrice}/month?`);
+    
+    if (confirmed) {
+        // Here you would typically integrate with a payment gateway
+        alert(`Subscription successful! You will be charged RM ${totalPrice}/month for ${studentCount} students.\n\nFeatures included:\n✅ Teacher Account\n✅ Own Account Management\n✅ Student Progress Tracking\n✅ Interactive AR Learning\n✅ Educational Games\n✅ Leaderboard System\n✅ Monthly Reports\n✅ Email Support\n✅ Custom Challenges\n✅ Real-time Analytics`);
+        
+        // Reset form
+        document.getElementById('studentCount').value = 25;
+        calculatePrice();
+    }
+}
+
+// Student management functions
+function addStudent() {
+    const studentName = prompt('Enter student name:');
+    if (studentName && studentName.trim()) {
+        // Here you would typically save to a database
+        alert(`Student "${studentName}" added successfully!`);
+    }
+}
+
+function removeStudent(studentId) {
+    const confirmed = confirm('Are you sure you want to remove this student?');
+    if (confirmed) {
+        // Here you would typically remove from database
+        alert('Student removed successfully!');
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     // Add some interactive animations

@@ -144,51 +144,57 @@
 
         <!-- Packages Page -->
         <div id="packages" class="page">
-            <h1 style="text-align: center; margin-bottom: 2rem;">Subscription Packages</h1>
+            <h1 style="text-align: center; margin-bottom: 2rem;">Teacher Subscription Plan</h1>
             <div class="package-grid">
-                <div class="package-card">
-                    <h3>Basic</h3>
-                    <div class="package-price">RM 99</div>
-                    <p>Per Month</p>
+                <div class="package-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <h3>Teacher Account</h3>
+                    <div class="package-price">RM 1</div>
+                    <p>Per Student Per Month</p>
+                    <div class="student-calculator">
+                        <label for="studentCount">Number of Students:</label>
+                        <input type="number" id="studentCount" min="1" max="1000" value="25" onchange="calculatePrice()">
+                        <div class="total-price">Total: RM 25/month</div>
+                    </div>
                     <ul class="package-features">
-                        <li>Up to 25 Students</li>
-                        <li>Basic AR Features</li>
-                        <li>Standard Games</li>
-                        <li>Monthly Reports</li>
-                        <li>Email Support</li>
+                        <li>✅ 1 Teacher Account</li>
+                        <li>✅ Own Account Management</li>
+                        <li>✅ Student Progress Tracking</li>
+                        <li>✅ Interactive AR Learning</li>
+                        <li>✅ Educational Games</li>
+                        <li>✅ Leaderboard System</li>
+                        <li>✅ Monthly Reports</li>
+                        <li>✅ Email Support</li>
+                        <li>✅ Custom Challenges</li>
+                        <li>✅ Real-time Analytics</li>
                     </ul>
-                    <button class="cta-button">Choose Plan</button>
+                    <button class="cta-button" onclick="subscribePlan()">Subscribe Now</button>
                 </div>
-                
-                <div class="package-card">
-                    <h3>Professional</h3>
-                    <div class="package-price">RM 199</div>
-                    <p>Per Month</p>
-                    <ul class="package-features">
-                        <li>Up to 100 Students</li>
-                        <li>Advanced AR Features</li>
-                        <li>Premium Games</li>
-                        <li>Weekly Reports</li>
-                        <li>Priority Support</li>
-                        <li>Custom Challenges</li>
-                    </ul>
-                    <button class="cta-button">Choose Plan</button>
-                </div>
-                
-                <div class="package-card">
-                    <h3>Enterprise</h3>
-                    <div class="package-price">RM 399</div>
-                    <p>Per Month</p>
-                    <ul class="package-features">
-                        <li>Unlimited Students</li>
-                        <li>All AR Features</li>
-                        <li>All Games & Content</li>
-                        <li>Real-time Analytics</li>
-                        <li>24/7 Support</li>
-                        <li>White-label Options</li>
-                        <li>API Access</li>
-                    </ul>
-                    <button class="cta-button">Choose Plan</button>
+            </div>
+            
+            <div class="subscription-info glass" style="margin-top: 3rem; padding: 2rem; text-align: center;">
+                <h3 style="color: #1e40af; margin-bottom: 1rem;">How It Works</h3>
+                <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div class="info-item">
+                        <div class="info-icon">👨‍🏫</div>
+                        <h4>1. Create Teacher Account</h4>
+                        <p>Sign up as a teacher and set up your profile</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">👥</div>
+                        <h4>2. Add Students</h4>
+                        <p>Invite students to join your class</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <h4>3. Pay Per Student</h4>
+                        <p>Only RM1 per student per month</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🚀</div>
+                        <h4>4. Start Learning</h4>
+                        <p>Access all features and track progress</p>
+                    </div>
                 </div>
             </div>
         </div>
