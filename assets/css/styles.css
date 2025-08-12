@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #60a5fa 50%, #93c5fd 75%, #dbeafe 100%);
     background-attachment: fixed;
-    color: #f8fafc;
+    color: #1e40af;
     overflow-x: hidden;
 }
 
@@ -45,10 +45,8 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #1e40af;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links {
@@ -58,12 +56,13 @@ body {
 }
 
 .nav-links a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 25px;
     position: relative;
+    font-weight: 500;
 }
 
 .nav-links a:hover {
@@ -443,6 +442,33 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* About Page Specific Styles */
+.about-hero {
+    position: relative;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.05));
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.feature-item {
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(147, 197, 253, 0.4) !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
@@ -460,5 +486,29 @@ body {
     .modal-content {
         width: 90%;
         margin: 1rem;
+    }
+    
+    /* About page responsive */
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    .about-hero h1 {
+        font-size: 2rem !important;
+    }
+    
+    .about-hero p {
+        font-size: 1rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
     }
 }
