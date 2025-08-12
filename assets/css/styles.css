@@ -191,6 +191,11 @@ body {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
 }
 
+/* Hide top navigation when dashboard is active */
+.page#dashboard .navbar {
+    display: none;
+}
+
 /* Sidebar Styles */
 .dashboard-sidebar {
     width: 280px;
