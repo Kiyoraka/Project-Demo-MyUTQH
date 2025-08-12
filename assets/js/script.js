@@ -68,22 +68,20 @@ function showDashboard() {
     });
 }
 
-function showDashboardTab(tabId) {
-    // Hide all dashboard content
-    document.querySelectorAll('.dashboard-content').forEach(content => {
-        content.style.display = 'none';
+function showDashboardSection(sectionId) {
+    // Hide all dashboard sections
+    document.querySelectorAll('.dashboard-section').forEach(section => {
+        section.classList.remove('active');
     });
     
-    // Show selected tab
-    document.getElementById(tabId + '-dashboard').style.display = 'block';
+    // Show selected section
+    document.getElementById(sectionId + '-section').classList.add('active');
     
-    // Update tab buttons
-    document.querySelectorAll('.dashboard-nav button').forEach(btn => {
-        btn.classList.remove('active');
+    // Update sidebar items
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
     });
     event.target.classList.add('active');
-    
-    currentDashboardTab = tabId;
 }
 
 function logout() {
