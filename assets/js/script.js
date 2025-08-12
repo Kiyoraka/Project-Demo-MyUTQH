@@ -11,6 +11,11 @@ function showPage(pageId) {
     // Show selected page
     document.getElementById(pageId).classList.add('active');
     
+    // Show the top navigation bar for non-dashboard pages
+    if (pageId !== 'dashboard') {
+        document.querySelector('.navbar').style.display = 'flex';
+    }
+    
     // Update navigation
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.classList.remove('active');
@@ -62,6 +67,9 @@ function showDashboard() {
     // Show dashboard
     document.getElementById('dashboard').classList.add('active');
     
+    // Hide the top navigation bar
+    document.querySelector('.navbar').style.display = 'none';
+    
     // Update navigation
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.classList.remove('active');
@@ -86,6 +94,10 @@ function showDashboardSection(sectionId) {
 
 function logout() {
     isLoggedIn = false;
+    
+    // Show the top navigation bar again
+    document.querySelector('.navbar').style.display = 'flex';
+    
     showPage('home');
     
     // Reset login button
