@@ -339,6 +339,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    align-items: start;
 }
 
 .stat-card {
@@ -349,6 +350,13 @@ body {
     transition: all 0.3s ease;
     border: 1px solid rgba(147, 197, 253, 0.2);
     backdrop-filter: blur(8px);
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .stat-card:hover {
@@ -1479,13 +1487,20 @@ input:checked + .toggle-slider:before {
     }
     
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 1fr !important;
         gap: 1rem !important;
+        margin: 0 1rem;
     }
     
     .features-grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        margin: 0 1rem;
     }
     
     /* Subscription responsive */
@@ -1615,5 +1630,15 @@ input:checked + .toggle-slider:before {
     
     .stat-card .stat-number {
         font-size: 1.8rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+        min-height: 100px;
+    }
+    
+    .stat-card > div {
+        font-size: 0.9rem;
+        line-height: 1.3;
     }
 }
