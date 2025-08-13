@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My UTQH - Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <div class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h3>My UTQH</h3>
+                <p>Admin Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-item active" onclick="showDashboardSection('overview')">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('students')">
+                    <span class="sidebar-icon">👥</span>
+                    <span>Students</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('teachers')">
+                    <span class="sidebar-icon">👨‍🏫</span>
+                    <span>Teachers</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('schools')">
+                    <span class="sidebar-icon">🏫</span>
+                    <span>Schools</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('financial')">
+                    <span class="sidebar-icon">💰</span>
+                    <span>Financial</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('analytics')">
+                    <span class="sidebar-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="sidebar-item" onclick="showDashboardSection('settings')">
+                    <span class="sidebar-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <span class="sidebar-icon">🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="dashboard-main">
+            <!-- Overview Section -->
+            <div id="overview-section" class="dashboard-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back! Here's what's happening with My UTQH today.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">1,247</div>
+                        <div class="stat-label">Total Students</div>
+                        <div class="stat-change positive">+12% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👨‍🏫</div>
+                        <div class="stat-number">89</div>
+                        <div class="stat-label">Active Teachers</div>
+                        <div class="stat-change positive">+5% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏫</div>
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Partner Schools</div>
+                        <div class="stat-change positive">+8% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">RM 47,580</div>
+                        <div class="stat-label">Monthly Revenue</div>
+                        <div class="stat-change positive">+15% this month</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">📊</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">SMK Taman Desa upgraded to Professional plan</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🎉</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">100+ students completed Level 1 challenges</div>
+                                    <div class="activity-time">4 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📈</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Average engagement time increased by 15%</div>
+                                    <div class="activity-time">6 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🏆</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New leaderboard record set by Ahmad Faiz</div>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn">
+                                <span class="action-icon">➕</span>
+                                <span>Add Student</span>
+                            </button>
+                            <button class="action-btn">
+                                <span class="action-icon">👨‍🏫</span>
+                                <span>Invite Teacher</span>
+                            </button>
+                            <button class="action-btn">
+                                <span class="action-icon">📊</span>
+                                <span>Generate Report</span>
+                            </button>
+                            <button class="action-btn">
+                                <span class="action-icon">🔔</span>
+                                <span>Send Notification</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Section -->
+            <div id="students-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Student Management</h1>
+                    <p>Manage all registered students across the platform.</p>
+                </div>
+                
+                <div class="section-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">1,247</div>
+                        <div class="mini-stat-label">Total Students</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">1,089</div>
+                        <div class="mini-stat-label">Active Students</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">158</div>
+                        <div class="mini-stat-label">Inactive Students</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Recent Student Registrations</h3>
+                        <button class="view-all-btn">View All</button>
+                    </div>
+                    <div class="student-list">
+                        <div class="student-item">
+                            <div class="student-avatar">AF</div>
+                            <div class="student-info">
+                                <div class="student-name">Ahmad Faiz</div>
+                                <div class="student-details">SMK Taman Desa • Form 5A</div>
+                            </div>
+                            <div class="student-status active">Active</div>
+                            <div class="student-actions">
+                                <button class="action-icon-btn">👁️</button>
+                                <button class="action-icon-btn">✏️</button>
+                            </div>
+                        </div>
+                        <div class="student-item">
+                            <div class="student-avatar">SM</div>
+                            <div class="student-info">
+                                <div class="student-name">Siti Mariam</div>
+                                <div class="student-details">SMK Bandar Baru • Form 4B</div>
+                            </div>
+                            <div class="student-status active">Active</div>
+                            <div class="student-actions">
+                                <button class="action-icon-btn">👁️</button>
+                                <button class="action-icon-btn">✏️</button>
+                            </div>
+                        </div>
+                        <div class="student-item">
+                            <div class="student-avatar">MI</div>
+                            <div class="student-info">
+                                <div class="student-name">Muhammad Irfan</div>
+                                <div class="student-details">SMK Johor Bahru • Form 3A</div>
+                            </div>
+                            <div class="student-status active">Active</div>
+                            <div class="student-actions">
+                                <button class="action-icon-btn">👁️</button>
+                                <button class="action-icon-btn">✏️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teachers Section -->
+            <div id="teachers-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Teacher Management</h1>
+                    <p>Manage all registered teachers and their accounts.</p>
+                </div>
+                
+                <div class="section-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">89</div>
+                        <div class="mini-stat-label">Total Teachers</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">82</div>
+                        <div class="mini-stat-label">Active Teachers</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">7</div>
+                        <div class="mini-stat-label">Pending Approval</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Teacher Performance</h3>
+                        <button class="view-all-btn">View All</button>
+                    </div>
+                    <div class="teacher-list">
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">AR</div>
+                            <div class="teacher-info">
+                                <div class="teacher-name">Ustaz Ahmad Rosli</div>
+                                <div class="teacher-details">SMK Taman Desa • 85 students</div>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Avg. Score:</span>
+                                    <span class="stat-value">87.5%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Engagement:</span>
+                                    <span class="stat-value">92%</span>
+                                </div>
+                            </div>
+                            <div class="teacher-status active">Active</div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">CF</div>
+                            <div class="teacher-info">
+                                <div class="teacher-name">Cikgu Fatimah</div>
+                                <div class="teacher-details">SMK Bandar Baru • 23 students</div>
+                            </div>
+                            <div class="teacher-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Avg. Score:</span>
+                                    <span class="stat-value">91.2%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Engagement:</span>
+                                    <span class="stat-value">88%</span>
+                                </div>
+                            </div>
+                            <div class="teacher-status active">Active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schools Section -->
+            <div id="schools-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>School Management</h1>
+                    <p>Overview of all partner schools and their performance.</p>
+                </div>
+                
+                <div class="section-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">156</div>
+                        <div class="mini-stat-label">Total Schools</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">142</div>
+                        <div class="mini-stat-label">Active Schools</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-number">14</div>
+                        <div class="mini-stat-label">Pending Approval</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Top Performing Schools</h3>
+                        <button class="view-all-btn">View All</button>
+                    </div>
+                    <div class="school-list">
+                        <div class="school-item">
+                            <div class="school-rank">🥇</div>
+                            <div class="school-info">
+                                <div class="school-name">SMK Taman Desa</div>
+                                <div class="school-details">Kuala Lumpur • 85 students</div>
+                            </div>
+                            <div class="school-performance">
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 95%"></div>
+                                </div>
+                                <span class="performance-text">95%</span>
+                            </div>
+                        </div>
+                        <div class="school-item">
+                            <div class="school-rank">🥈</div>
+                            <div class="school-info">
+                                <div class="school-name">SMK Bandar Baru</div>
+                                <div class="school-details">Selangor • 23 students</div>
+                            </div>
+                            <div class="school-performance">
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 88%"></div>
+                                </div>
+                                <span class="performance-text">88%</span>
+                            </div>
+                        </div>
+                        <div class="school-item">
+                            <div class="school-rank">🥉</div>
+                            <div class="school-info">
+                                <div class="school-name">SMK Johor Bahru</div>
+                                <div class="school-details">Johor • 150 students</div>
+                            </div>
+                            <div class="school-performance">
+                                <div class="performance-bar">
+                                    <div class="performance-fill" style="width: 82%"></div>
+                                </div>
+                                <span class="performance-text">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Section -->
+            <div id="financial-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Financial Overview</h1>
+                    <p>Track revenue, expenses, and financial performance.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">RM 47,580</div>
+                        <div class="stat-label">Monthly Revenue</div>
+                        <div class="stat-change positive">+15% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💸</div>
+                        <div class="stat-number">RM 12,340</div>
+                        <div class="stat-label">Monthly Expenses</div>
+                        <div class="stat-change negative">+8% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-number">RM 35,240</div>
+                        <div class="stat-label">Net Profit</div>
+                        <div class="stat-change positive">+18% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-number">74%</div>
+                        <div class="stat-label">Profit Margin</div>
+                        <div class="stat-change positive">+2% this month</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Revenue Breakdown</h3>
+                    <div class="revenue-breakdown">
+                        <div class="revenue-item">
+                            <div class="revenue-label">Basic Subscriptions</div>
+                            <div class="revenue-amount">RM 15,680</div>
+                            <div class="revenue-bar">
+                                <div class="revenue-fill" style="width: 33%"></div>
+                            </div>
+                        </div>
+                        <div class="revenue-item">
+                            <div class="revenue-label">Professional Subscriptions</div>
+                            <div class="revenue-amount">RM 23,800</div>
+                            <div class="revenue-bar">
+                                <div class="revenue-fill" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="revenue-item">
+                            <div class="revenue-label">Enterprise Subscriptions</div>
+                            <div class="revenue-amount">RM 8,100</div>
+                            <div class="revenue-bar">
+                                <div class="revenue-fill" style="width: 17%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Analytics & Reports</h1>
+                    <p>Comprehensive insights into platform performance and user engagement.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-number">87.3%</div>
+                        <div class="stat-label">Average Score</div>
+                        <div class="stat-change positive">+5% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-number">24.5 min</div>
+                        <div class="stat-label">Avg. Session Time</div>
+                        <div class="stat-change positive">+12% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-number">92%</div>
+                        <div class="stat-label">Completion Rate</div>
+                        <div class="stat-change positive">+8% this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-number">1,089</div>
+                        <div class="stat-label">Active Users</div>
+                        <div class="stat-change positive">+15% this month</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Performance Trends</h3>
+                        <div class="performance-chart">
+                            <div class="chart-item">
+                                <div class="chart-label">Week 1</div>
+                                <div class="chart-bar">
+                                    <div class="chart-fill" style="width: 75%"></div>
+                                </div>
+                                <div class="chart-value">75%</div>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-label">Week 2</div>
+                                <div class="chart-bar">
+                                    <div class="chart-fill" style="width: 82%"></div>
+                                </div>
+                                <div class="chart-value">82%</div>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-label">Week 3</div>
+                                <div class="chart-bar">
+                                    <div class="chart-fill" style="width: 89%"></div>
+                                </div>
+                                <div class="chart-value">89%</div>
+                            </div>
+                            <div class="chart-item">
+                                <div class="chart-label">Week 4</div>
+                                <div class="chart-bar">
+                                    <div class="chart-fill" style="width: 87%"></div>
+                                </div>
+                                <div class="chart-value">87%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Top Categories</h3>
+                        <div class="category-stats">
+                            <div class="category-item">
+                                <div class="category-name">Form 1</div>
+                                <div class="category-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 95%"></div>
+                                    </div>
+                                    <span class="progress-value">95%</span>
+                                </div>
+                            </div>
+                            <div class="category-item">
+                                <div class="category-name">Form 2</div>
+                                <div class="category-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 88%"></div>
+                                    </div>
+                                    <span class="progress-value">88%</span>
+                                </div>
+                            </div>
+                            <div class="category-item">
+                                <div class="category-name">Form 3</div>
+                                <div class="category-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 82%"></div>
+                                    </div>
+                                    <span class="progress-value">82%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings-section" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Platform Settings</h1>
+                    <p>Configure platform preferences and system settings.</p>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>General Settings</h3>
+                    <div class="settings-list">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-label">Email Notifications</div>
+                                <div class="setting-description">Receive email updates about platform activities</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-label">Auto-backup</div>
+                                <div class="setting-description">Automatically backup data every 24 hours</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-label">Maintenance Mode</div>
+                                <div class="setting-description">Enable maintenance mode for system updates</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Security Settings</h3>
+                    <div class="settings-list">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-label">Two-Factor Authentication</div>
+                                <div class="setting-description">Require 2FA for admin accounts</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-label">Session Timeout</div>
+                                <div class="setting-description">Auto-logout after 30 minutes of inactivity</div>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
