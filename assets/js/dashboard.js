@@ -55,12 +55,24 @@ function showDashboardSection(sectionName) {
 }
 
 function logout() {
-    // Show confirmation dialog
-    if (confirm('Are you sure you want to logout?')) {
-        // Redirect to main page
-        window.location.href = 'index.html';
-        console.log('User logged out successfully');
-    }
+    // Show custom logout modal
+    showLogoutModal();
+}
+
+function showLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    modal.classList.add('active');
+}
+
+function hideLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    modal.classList.remove('active');
+}
+
+function confirmLogout() {
+    // Redirect to main page
+    window.location.href = 'index.html';
+    console.log('User logged out successfully');
 }
 
 // Enhanced dashboard functionality
@@ -212,10 +224,18 @@ function enhanceSidebarNavigation() {
     });
 }
 
-// Initialize enhanced navigation
-document.addEventListener('DOMContentLoaded', function() {
-    enhanceSidebarNavigation();
-});
+    // Initialize enhanced navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        enhanceSidebarNavigation();
+        
+        // Close logout modal when clicking outside
+        const logoutModal = document.getElementById('logoutModal');
+        logoutModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLogoutModal();
+            }
+        });
+    });
 
 // Dashboard statistics counter animation
 function animateCounters() {
@@ -268,6 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // Export functions for global access
 window.showDashboardSection = showDashboardSection;
 window.logout = logout;
+window.showLogoutModal = showLogoutModal;
+window.hideLogoutModal = hideLogoutModal;
+window.confirmLogout = confirmLogout;
 window.addStudent = addStudent;
 window.inviteTeacher = inviteTeacher;
 window.generateReport = generateReport;

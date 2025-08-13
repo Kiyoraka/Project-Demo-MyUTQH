@@ -594,6 +594,23 @@
         </div>
     </div>
 
-    <script src="assets/js/dashboard.js"></script>
-</body>
-</html>
+            <!-- Custom Logout Modal -->
+        <div id="logoutModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirm Logout</h3>
+                    <button class="close-btn" onclick="hideLogoutModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout from the admin panel?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="hideLogoutModal()">Cancel</button>
+                    <button class="btn-primary" onclick="confirmLogout()">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/dashboard.js"></script>
+    </body>
+    </html>

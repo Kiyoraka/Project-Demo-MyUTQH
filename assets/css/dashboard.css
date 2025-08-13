@@ -1,4 +1,4 @@
-/* Dashboard CSS - Clean and Professional */
+/* Dashboard CSS - Clean and Professional with Blue Theme */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,9 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    color: white;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #60a5fa 50%, #93c5fd 75%, #dbeafe 100%);
+    background-attachment: fixed;
+    color: #1e40af;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -22,18 +23,20 @@ body {
 /* Sidebar Styles */
 .dashboard-sidebar {
     width: 280px;
-    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-    border-right: 1px solid rgba(147, 197, 253, 0.2);
+    background: linear-gradient(180deg, rgba(30, 58, 138, 0.95) 0%, rgba(59, 130, 246, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(147, 197, 253, 0.3);
     display: flex;
     flex-direction: column;
     position: fixed;
     height: 100vh;
     z-index: 1000;
+    box-shadow: 4px 0 20px rgba(30, 58, 138, 0.2);
 }
 
 .sidebar-header {
     padding: 2rem 1.5rem 1rem;
-    border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.3);
 }
 
 .sidebar-header h3 {
@@ -41,11 +44,12 @@ body {
     font-weight: 700;
     color: white;
     margin-bottom: 0.3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-header p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
 }
 
@@ -62,23 +66,25 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.5rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: 0 8px 8px 0;
     margin-right: 1rem;
+    font-weight: 500;
 }
 
 .sidebar-item:hover {
-    background: rgba(59, 130, 246, 0.1);
-    color: #60a5fa;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
     transform: translateX(5px);
 }
 
 .sidebar-item.active {
-    background: rgba(59, 130, 246, 0.2);
-    color: #60a5fa;
-    border-right: 3px solid #3b82f6;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-right: 3px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-icon {
@@ -89,7 +95,7 @@ body {
 
 .sidebar-footer {
     padding: 1.5rem;
-    border-top: 1px solid rgba(147, 197, 253, 0.2);
+    border-top: 1px solid rgba(147, 197, 253, 0.3);
 }
 
 .logout-btn {
@@ -119,7 +125,7 @@ body {
     flex: 1;
     margin-left: 280px;
     padding: 2rem;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: transparent;
     min-height: 100vh;
 }
 
@@ -147,17 +153,18 @@ body {
 .section-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: white;
+    color: #1e40af;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 .section-header p {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #1e40af;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+    font-weight: 500;
 }
 
 /* Stats Grid */
@@ -169,15 +176,16 @@ body {
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    background: rgba(59, 130, 246, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(147, 197, 253, 0.3);
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
-    backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 32px rgba(30, 58, 138, 0.2);
 }
 
 .stat-card::before {
@@ -192,7 +200,7 @@ body {
 
 .stat-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3);
     border-color: rgba(147, 197, 253, 0.4);
 }
 
@@ -200,19 +208,20 @@ body {
     font-size: 3rem;
     margin-bottom: 1rem;
     display: block;
+    color: #3b82f6;
 }
 
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: white;
+    color: #1e40af;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .stat-label {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #1e40af;
     margin-bottom: 1rem;
     font-weight: 500;
 }
@@ -227,13 +236,13 @@ body {
 
 .stat-change.positive {
     background: rgba(34, 197, 94, 0.2);
-    color: #4ade80;
+    color: #16a34a;
     border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .stat-change.negative {
     background: rgba(239, 68, 68, 0.2);
-    color: #f87171;
+    color: #dc2626;
     border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
@@ -246,23 +255,24 @@ body {
 }
 
 .dashboard-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    background: rgba(59, 130, 246, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(147, 197, 253, 0.3);
     border-radius: 16px;
     padding: 2rem;
-    backdrop-filter: blur(20px);
     transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(30, 58, 138, 0.2);
 }
 
 .dashboard-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px rgba(30, 58, 138, 0.3);
     border-color: rgba(147, 197, 253, 0.4);
 }
 
 .dashboard-card h3 {
     font-size: 1.5rem;
-    color: white;
+    color: #1e40af;
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
@@ -279,19 +289,22 @@ body {
     align-items: flex-start;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(59, 130, 246, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .activity-item:hover {
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     transform: translateX(5px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .activity-icon {
     font-size: 1.5rem;
     margin-top: 0.2rem;
+    color: #3b82f6;
 }
 
 .activity-content {
@@ -300,14 +313,15 @@ body {
 
 .activity-title {
     font-weight: 500;
-    color: white;
+    color: #1e40af;
     margin-bottom: 0.3rem;
     line-height: 1.4;
 }
 
 .activity-time {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: #1e40af;
+    opacity: 0.8;
 }
 
 /* Quick Actions */
@@ -318,9 +332,9 @@ body {
 }
 
 .action-btn {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(147, 197, 253, 0.3);
-    color: #60a5fa;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #1e40af;
     padding: 1.5rem 1rem;
     border-radius: 12px;
     cursor: pointer;
@@ -333,13 +347,15 @@ body {
 }
 
 .action-btn:hover {
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .action-icon {
     font-size: 2rem;
+    color: #3b82f6;
 }
 
 /* Section Stats */
@@ -351,8 +367,8 @@ body {
 }
 
 .mini-stat {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(147, 197, 253, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
@@ -362,20 +378,22 @@ body {
 
 .mini-stat:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .mini-stat-number {
     font-size: 2rem;
     font-weight: 700;
-    color: #60a5fa;
+    color: #1e40af;
     margin-bottom: 0.5rem;
 }
 
 .mini-stat-label {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #1e40af;
     font-weight: 500;
+    opacity: 0.8;
 }
 
 /* Card Headers */
@@ -388,24 +406,26 @@ body {
 
 .card-header h3 {
     margin: 0;
-    color: white;
+    color: #1e40af;
     font-size: 1.3rem;
 }
 
 .view-all-btn {
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid rgba(147, 197, 253, 0.3);
-    color: #60a5fa;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #1e40af;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .view-all-btn:hover {
-    background: rgba(59, 130, 246, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Student List Styles */
@@ -420,15 +440,16 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(59, 130, 246, 0.05);
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .student-item:hover, .teacher-item:hover, .school-item:hover {
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .student-avatar, .teacher-avatar {
@@ -450,13 +471,14 @@ body {
 
 .student-name, .teacher-name, .school-name {
     font-weight: 600;
-    color: white;
+    color: #1e40af;
     margin-bottom: 0.2rem;
 }
 
 .student-details, .teacher-details, .school-details {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #1e40af;
+    opacity: 0.8;
 }
 
 .student-status, .teacher-status {
@@ -468,7 +490,7 @@ body {
 
 .student-status.active, .teacher-status.active {
     background: rgba(34, 197, 94, 0.2);
-    color: #4ade80;
+    color: #16a34a;
     border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
@@ -478,9 +500,9 @@ body {
 }
 
 .action-icon-btn {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(147, 197, 253, 0.3);
-    color: #60a5fa;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #1e40af;
     width: 32px;
     height: 32px;
     border-radius: 6px;
@@ -492,8 +514,9 @@ body {
 }
 
 .action-icon-btn:hover {
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Teacher Stats */
@@ -511,11 +534,12 @@ body {
 }
 
 .stat-label {
-    color: rgba(255, 255, 255, 0.7);
+    color: #1e40af;
+    opacity: 0.8;
 }
 
 .stat-value {
-    color: #60a5fa;
+    color: #1e40af;
     font-weight: 600;
 }
 
@@ -523,6 +547,8 @@ body {
 .school-rank {
     font-size: 1.5rem;
     min-width: 40px;
+    color: #1e40af;
+    font-weight: 600;
 }
 
 .school-performance {
@@ -535,7 +561,7 @@ body {
 .performance-bar {
     width: 60px;
     height: 8px;
-    background: rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -549,7 +575,7 @@ body {
 
 .performance-text {
     font-size: 0.9rem;
-    color: #60a5fa;
+    color: #1e40af;
     font-weight: 600;
     min-width: 35px;
 }
@@ -566,18 +592,19 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    background: rgba(59, 130, 246, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .revenue-label {
     flex: 1;
-    color: white;
+    color: #1e40af;
     font-weight: 500;
 }
 
 .revenue-amount {
-    color: #60a5fa;
+    color: #1e40af;
     font-weight: 600;
     min-width: 100px;
     text-align: right;
@@ -586,7 +613,7 @@ body {
 .revenue-bar {
     width: 80px;
     height: 8px;
-    background: rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -611,7 +638,7 @@ body {
 }
 
 .chart-label {
-    color: white;
+    color: #1e40af;
     font-weight: 500;
     min-width: 60px;
 }
@@ -619,7 +646,7 @@ body {
 .chart-bar {
     flex: 1;
     height: 12px;
-    background: rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     overflow: hidden;
 }
@@ -632,7 +659,7 @@ body {
 }
 
 .chart-value {
-    color: #f59e0b;
+    color: #d97706;
     font-weight: 600;
     min-width: 40px;
     text-align: right;
@@ -650,12 +677,13 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem;
-    background: rgba(59, 130, 246, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .category-name {
-    color: white;
+    color: #1e40af;
     font-weight: 500;
     min-width: 80px;
 }
@@ -670,7 +698,7 @@ body {
 .progress-bar {
     flex: 1;
     height: 8px;
-    background: rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -683,7 +711,7 @@ body {
 }
 
 .progress-value {
-    color: #8b5cf6;
+    color: #7c3aed;
     font-weight: 600;
     min-width: 40px;
     text-align: right;
@@ -701,8 +729,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background: rgba(59, 130, 246, 0.05);
-    border: 1px solid rgba(147, 197, 253, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
 }
 
@@ -711,14 +739,15 @@ body {
 }
 
 .setting-label {
-    color: white;
+    color: #1e40af;
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
 
 .setting-description {
-    color: rgba(255, 255, 255, 0.7);
+    color: #1e40af;
     font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* Toggle Switch */
@@ -742,7 +771,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(147, 197, 253, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     transition: .4s;
     border-radius: 24px;
 }
@@ -871,4 +900,135 @@ input:checked + .toggle-slider:before {
     .dashboard-card {
         padding: 1.5rem;
     }
+}
+
+/* Custom Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 58, 138, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: rgba(59, 130, 246, 0.15);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 25px 50px rgba(30, 58, 138, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid rgba(147, 197, 253, 0.3);
+}
+
+.modal-header h3 {
+    color: #1e40af;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #1e40af;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #1e40af;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body p {
+    color: #1e40af;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem 1.5rem;
+    justify-content: flex-end;
+}
+
+.btn-secondary, .btn-primary {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: #1e40af;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
