@@ -344,19 +344,20 @@ body {
 
 .stat-card {
     background: rgba(59, 130, 246, 0.15);
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 10px;
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(147, 197, 253, 0.2);
     backdrop-filter: blur(8px);
-    min-height: 120px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     word-wrap: break-word;
     overflow: hidden;
+    gap: 0.5rem;
 }
 
 .stat-card:hover {
@@ -1427,8 +1428,20 @@ input:checked + .toggle-slider:before {
 }
 
 /* About Page Specific Styles */
+#about {
+    margin-top: 1rem;
+}
+
 .about-hero {
     position: relative;
+    margin-top: 2rem;
+}
+
+.about-hero.glass {
+    padding: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
 }
 
 .about-hero::before {
@@ -1449,8 +1462,26 @@ input:checked + .toggle-slider:before {
 
 .feature-item:hover {
     transform: translateY(-5px);
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(59, 246, 0.2);
     border-color: rgba(147, 197, 253, 0.4) !important;
+}
+
+/* Vision & Mission Cards */
+.about-content .glass {
+    padding: 2.5rem !important;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-content .glass h3 {
+    margin-bottom: 1.5rem !important;
+}
+
+.about-content .glass p {
+    line-height: 1.8 !important;
+    margin-bottom: 0 !important;
 }
 
 /* Responsive */
