@@ -3,22 +3,15 @@ let currentPage = 'home';
 let currentDashboardTab = 'main';
 
 function showPage(pageId) {
-    console.log('🔄 showPage called with pageId:', pageId);
-    console.log('📍 Current page before change:', currentPage);
-    
     // Hide all pages
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
-    console.log('✅ All pages hidden');
     
     // Show selected page
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.classList.add('active');
-        console.log('✅ Target page shown:', pageId);
-    } else {
-        console.error('❌ Target page not found:', pageId);
     }
     
     // Show the top navigation bar for non-dashboard pages
@@ -29,18 +22,12 @@ function showPage(pageId) {
             // Just ensure it's visible (remove any 'none' that might have been set)
             if (navbar.style.display === 'none') {
                 navbar.style.display = '';
-                console.log('✅ Navbar visibility restored for page:', pageId);
-            } else {
-                console.log('✅ Navbar already visible for page:', pageId);
             }
-        } else {
-            console.error('❌ Navbar not found');
         }
     }
     
     // Update navigation
     const navLinks = document.querySelectorAll('.nav-links a');
-    console.log('🔗 Found nav links:', navLinks.length);
     
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -48,58 +35,9 @@ function showPage(pageId) {
     
     if (event && event.target) {
         event.target.classList.add('active');
-        console.log('✅ Active nav link updated:', event.target.textContent);
-    } else {
-        console.warn('⚠️ No event target found for navigation update');
     }
     
     currentPage = pageId;
-    console.log('📍 Current page updated to:', currentPage);
-    
-    // Force navigation layout refresh
-    forceNavigationLayoutRefresh();
-    
-    // Log page dimensions and navbar state
-    setTimeout(() => {
-        const activePage = document.querySelector('.page.active');
-        const navbar = document.querySelector('.navbar');
-        if (activePage && navbar) {
-            console.log('📏 Active page dimensions:', {
-                width: activePage.offsetWidth,
-                height: activePage.offsetHeight,
-                scrollWidth: activePage.scrollWidth,
-                scrollHeight: activePage.scrollHeight
-            });
-            console.log('🧭 Navbar state:', {
-                display: navbar.style.display,
-                width: navbar.offsetWidth,
-                height: navbar.offsetHeight,
-                computedStyle: window.getComputedStyle(navbar).display
-            });
-            
-            // Log navbar container and nav-links dimensions
-            const navContainer = document.querySelector('.nav-container');
-            const navLinks = document.querySelector('.nav-links');
-            if (navContainer && navLinks) {
-                console.log('📐 Nav container dimensions:', {
-                    width: navContainer.offsetWidth,
-                    height: navContainer.offsetHeight,
-                    computedStyle: window.getComputedStyle(navContainer).display,
-                    justifyContent: window.getComputedStyle(navContainer).justifyContent
-                });
-                console.log('🔗 Nav links dimensions:', {
-                    width: navLinks.offsetWidth,
-                    height: navLinks.offsetHeight,
-                    computedStyle: window.getComputedStyle(navLinks).display,
-                    gap: window.getComputedStyle(navLinks).gap
-                });
-            }
-            
-            // Force a layout recalculation
-            navbar.offsetHeight; // Trigger reflow
-            console.log('🔄 Layout recalculation triggered');
-        }
-    }, 100);
 }
 
 function showLogin() {
@@ -131,39 +69,26 @@ function handleLogin(event) {
 }
 
 function showDashboard() {
-    console.log('🔄 showDashboard called');
-    console.log('🔐 Login status:', isLoggedIn);
-    
     if (!isLoggedIn) {
-        console.log('❌ User not logged in, showing login modal');
         showLogin();
         return;
     }
-    
-    console.log('✅ User is logged in, proceeding to dashboard');
     
     // Hide all pages
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
-    console.log('✅ All pages hidden');
     
     // Show dashboard
     const dashboard = document.getElementById('dashboard');
     if (dashboard) {
         dashboard.classList.add('active');
-        console.log('✅ Dashboard shown');
-    } else {
-        console.error('❌ Dashboard element not found');
     }
     
     // Hide the top navigation bar
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         navbar.style.display = 'none';
-        console.log('✅ Navbar hidden');
-    } else {
-        console.error('❌ Navbar not found');
     }
     
     // Update navigation
@@ -171,25 +96,6 @@ function showDashboard() {
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
-    console.log('✅ Navigation links updated');
-    
-    // Log dashboard and navbar state
-    setTimeout(() => {
-        if (dashboard && navbar) {
-            console.log('📏 Dashboard dimensions:', {
-                width: dashboard.offsetWidth,
-                height: dashboard.offsetHeight,
-                scrollWidth: dashboard.scrollWidth,
-                scrollHeight: dashboard.scrollHeight
-            });
-            console.log('🧭 Navbar state after hiding:', {
-                display: navbar.style.display,
-                computedStyle: window.getComputedStyle(navbar).display,
-                width: navbar.offsetWidth,
-                height: navbar.offsetHeight
-            });
-        }
-    }, 100);
 }
 
 function showDashboardSection(sectionId) {
@@ -208,160 +114,15 @@ function showDashboardSection(sectionId) {
     event.target.classList.add('active');
 }
 
-// Store initial state for comparison
-let initialNavState = {};
 
-function captureInitialNavState() {
-    console.log('📸 Capturing initial navigation state...');
-    
-    const navbar = document.querySelector('.navbar');
-    const navContainer = document.querySelector('.nav-container');
-    const navLinks = document.querySelector('.nav-links');
-    const logo = document.querySelector('.logo');
-    const loginBtn = document.querySelector('.login-btn');
-    
-    if (navbar && navContainer && navLinks && logo && loginBtn) {
-        initialNavState = {
-            navbar: {
-                width: navbar.offsetWidth,
-                height: navbar.offsetHeight,
-                display: window.getComputedStyle(navbar).display
-            },
-            navContainer: {
-                width: navContainer.offsetWidth,
-                height: navContainer.offsetHeight,
-                justifyContent: window.getComputedStyle(navContainer).justifyContent
-            },
-            navLinks: {
-                width: navLinks.offsetWidth,
-                height: navLinks.offsetHeight,
-                gap: window.getComputedStyle(navLinks).gap
-            },
-            logo: {
-                width: logo.offsetWidth,
-                height: logo.offsetHeight,
-                margin: window.getComputedStyle(logo).margin
-            },
-            loginBtn: {
-                width: loginBtn.offsetWidth,
-                height: loginBtn.offsetHeight,
-                margin: window.getComputedStyle(loginBtn).margin
-            }
-        };
-        console.log('✅ Initial navigation state captured:', initialNavState);
-    }
-}
-
-function compareWithInitialState() {
-    if (Object.keys(initialNavState).length === 0) {
-        console.log('⚠️ No initial state to compare with');
-        return;
-    }
-    
-    console.log('🔍 === COMPARING CURRENT STATE WITH INITIAL STATE ===');
-    
-    const navbar = document.querySelector('.navbar');
-    const navContainer = document.querySelector('.nav-container');
-    const navLinks = document.querySelector('.nav-links');
-    const logo = document.querySelector('.logo');
-    const loginBtn = document.querySelector('.login-btn');
-    
-    if (navbar && navContainer && navLinks && logo && loginBtn) {
-        const currentState = {
-            navbar: {
-                width: navbar.offsetWidth,
-                height: navbar.offsetHeight,
-                display: window.getComputedStyle(navbar).display
-            },
-            navContainer: {
-                width: navContainer.offsetWidth,
-                height: navContainer.offsetHeight,
-                justifyContent: window.getComputedStyle(navContainer).justifyContent
-            },
-            navLinks: {
-                width: navLinks.offsetWidth,
-                height: navLinks.offsetHeight,
-                gap: window.getComputedStyle(navLinks).gap
-            },
-            logo: {
-                width: logo.offsetWidth,
-                height: logo.offsetHeight,
-                margin: window.getComputedStyle(logo).margin
-            },
-            loginBtn: {
-                width: loginBtn.offsetWidth,
-                height: loginBtn.offsetHeight,
-                margin: window.getComputedStyle(loginBtn).margin
-            }
-        };
-        
-        // Compare and highlight differences
-        Object.keys(currentState).forEach(key => {
-            const initial = initialNavState[key];
-            const current = currentState[key];
-            
-            Object.keys(current).forEach(prop => {
-                if (initial[prop] !== current[prop]) {
-                    console.log(`🚨 ${key}.${prop} CHANGED:`, {
-                        from: initial[prop],
-                        to: current[prop],
-                        difference: typeof current[prop] === 'number' ? 
-                            current[prop] - initial[prop] : 'N/A'
-                    });
-                }
-            });
-        });
-        
-        console.log('✅ === STATE COMPARISON COMPLETE ===');
-    }
-}
-
-function forceNavigationLayoutRefresh() {
-    console.log('🔄 Force refreshing navigation layout...');
-    
-    const navbar = document.querySelector('.navbar');
-    const navContainer = document.querySelector('.nav-container');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (navbar && navContainer && navLinks) {
-        // Force layout recalculation
-        navbar.offsetHeight;
-        navContainer.offsetHeight;
-        navLinks.offsetHeight;
-        
-        // DON'T override the natural CSS display properties
-        // Let the CSS handle the display values naturally
-        // Only ensure the container and nav-links maintain flex (which they should from CSS)
-        navContainer.style.display = 'flex';
-        navLinks.style.display = 'flex';
-        
-        // Force CSS recalculation
-        window.getComputedStyle(navbar).display;
-        window.getComputedStyle(navContainer).justifyContent;
-        window.getComputedStyle(navLinks).gap;
-        
-        console.log('✅ Navigation layout refreshed (preserving natural navbar display)');
-        
-        // Compare with initial state after refresh
-        compareWithInitialState();
-    } else {
-        console.warn('⚠️ Some navigation elements not found for layout refresh');
-    }
-}
 
 function logout() {
-    console.log('🔄 logout called');
-    
     isLoggedIn = false;
-    console.log('✅ Login status set to false');
     
     // Show the top navigation bar again
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         navbar.style.display = 'flex';
-        console.log('✅ Navbar displayed again');
-    } else {
-        console.error('❌ Navbar not found during logout');
     }
     
     showPage('home');
@@ -371,12 +132,8 @@ function logout() {
     if (loginBtn) {
         loginBtn.textContent = 'Login';
         loginBtn.onclick = showLogin;
-        console.log('✅ Login button reset');
-    } else {
-        console.error('❌ Login button not found');
     }
     
-    console.log('✅ Logout completed successfully');
     alert('Logged out successfully!');
 }
 
@@ -592,8 +349,6 @@ function nextPage() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 DOM Content Loaded - Starting initialization...');
-    
     // Add some interactive animations
     document.querySelectorAll('.feature-card, .stat-card, .package-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -625,118 +380,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize leaderboard
     generateMockData();
     displayLeaderboard();
-
-    console.log('My UTQH Platform initialized successfully!');
-    
-    // Capture initial state after everything is loaded
-    setTimeout(() => {
-        console.log('🔍 === FRESH PAGE LOAD - INITIAL STATE ANALYSIS ===');
-        
-        // Check home page state
-        const homePage = document.getElementById('home');
-        if (homePage) {
-            console.log('🏠 Home page state:', {
-                isActive: homePage.classList.contains('active'),
-                display: window.getComputedStyle(homePage).display,
-                width: homePage.offsetWidth,
-                height: homePage.offsetHeight
-            });
-        }
-        
-        // Check navbar state
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            console.log('🧭 Navbar initial state:', {
-                display: navbar.style.display,
-                computedDisplay: window.getComputedStyle(navbar).display,
-                width: navbar.offsetWidth,
-                height: navbar.offsetHeight,
-                background: window.getComputedStyle(navbar).background,
-                position: window.getComputedStyle(navbar).position
-            });
-        }
-        
-        // Check navigation container
-        const navContainer = document.querySelector('.nav-container');
-        if (navContainer) {
-            console.log('📦 Nav container initial state:', {
-                width: navContainer.offsetWidth,
-                height: navContainer.offsetHeight,
-                display: window.getComputedStyle(navContainer).display,
-                justifyContent: window.getComputedStyle(navContainer).justifyContent,
-                alignItems: window.getComputedStyle(navContainer).alignItems,
-                padding: window.getComputedStyle(navContainer).padding,
-                margin: window.getComputedStyle(navContainer).margin
-            });
-        }
-        
-        // Check logo
-        const logo = document.querySelector('.logo');
-        if (logo) {
-            console.log('🎨 Logo initial state:', {
-                width: logo.offsetWidth,
-                height: logo.offsetHeight,
-                display: window.getComputedStyle(logo).display,
-                margin: window.getComputedStyle(logo).margin,
-                flexShrink: window.getComputedStyle(logo).flexShrink,
-                position: window.getComputedStyle(logo).position
-            });
-        }
-        
-        // Check navigation links
-        const navLinks = document.querySelector('.nav-links');
-        if (navLinks) {
-            console.log('🔗 Nav links initial state:', {
-                width: navLinks.offsetWidth,
-                height: navLinks.offsetHeight,
-                display: window.getComputedStyle(navLinks).display,
-                gap: window.getComputedStyle(navLinks).gap,
-                justifyContent: window.getComputedStyle(navLinks).justifyContent,
-                alignItems: window.getComputedStyle(navLinks).alignItems,
-                margin: window.getComputedStyle(navLinks).margin,
-                padding: window.getComputedStyle(navLinks).padding
-            });
-            
-            // Check individual nav link items
-            const navLinkItems = navLinks.querySelectorAll('a');
-            console.log('📋 Individual nav link items:', navLinkItems.length);
-            navLinkItems.forEach((link, index) => {
-                console.log(`  Link ${index + 1} (${link.textContent}):`, {
-                    width: link.offsetWidth,
-                    height: link.offsetHeight,
-                    margin: window.getComputedStyle(link).margin,
-                    padding: window.getComputedStyle(link).padding,
-                    display: window.getComputedStyle(link).display
-                });
-            });
-        }
-        
-        // Check login button
-        const loginBtn = document.querySelector('.login-btn');
-        if (loginBtn) {
-            console.log('🔐 Login button initial state:', {
-                width: loginBtn.offsetWidth,
-                height: loginBtn.offsetHeight,
-                display: window.getComputedStyle(loginBtn).display,
-                margin: window.getComputedStyle(loginBtn).margin,
-                padding: window.getComputedStyle(loginBtn).padding,
-                flexShrink: window.getComputedStyle(loginBtn).flexShrink
-            });
-        }
-        
-        // Check viewport and body
-        console.log('📱 Viewport and body state:', {
-            viewportWidth: window.innerWidth,
-            viewportHeight: window.innerHeight,
-            bodyWidth: document.body.offsetWidth,
-            bodyHeight: document.body.offsetHeight,
-            scrollWidth: document.body.scrollWidth,
-            scrollHeight: document.body.scrollHeight
-        });
-        
-        console.log('✅ === INITIAL STATE ANALYSIS COMPLETE ===');
-        
-        // Capture initial navigation state for comparison
-        captureInitialNavState();
-    }, 500); // Wait 500ms for all styles to be applied
 });
