@@ -202,6 +202,114 @@ function showDashboardSection(sectionId) {
     event.target.classList.add('active');
 }
 
+// Store initial state for comparison
+let initialNavState = {};
+
+function captureInitialNavState() {
+    console.log('📸 Capturing initial navigation state...');
+    
+    const navbar = document.querySelector('.navbar');
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('.nav-links');
+    const logo = document.querySelector('.logo');
+    const loginBtn = document.querySelector('.login-btn');
+    
+    if (navbar && navContainer && navLinks && logo && loginBtn) {
+        initialNavState = {
+            navbar: {
+                width: navbar.offsetWidth,
+                height: navbar.offsetHeight,
+                display: window.getComputedStyle(navbar).display
+            },
+            navContainer: {
+                width: navContainer.offsetWidth,
+                height: navContainer.offsetHeight,
+                justifyContent: window.getComputedStyle(navContainer).justifyContent
+            },
+            navLinks: {
+                width: navLinks.offsetWidth,
+                height: navLinks.offsetHeight,
+                gap: window.getComputedStyle(navLinks).gap
+            },
+            logo: {
+                width: logo.offsetWidth,
+                height: logo.offsetHeight,
+                margin: window.getComputedStyle(logo).margin
+            },
+            loginBtn: {
+                width: loginBtn.offsetWidth,
+                height: loginBtn.offsetHeight,
+                margin: window.getComputedStyle(loginBtn).margin
+            }
+        };
+        console.log('✅ Initial navigation state captured:', initialNavState);
+    }
+}
+
+function compareWithInitialState() {
+    if (Object.keys(initialNavState).length === 0) {
+        console.log('⚠️ No initial state to compare with');
+        return;
+    }
+    
+    console.log('🔍 === COMPARING CURRENT STATE WITH INITIAL STATE ===');
+    
+    const navbar = document.querySelector('.navbar');
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('.nav-links');
+    const logo = document.querySelector('.logo');
+    const loginBtn = document.querySelector('.login-btn');
+    
+    if (navbar && navContainer && navLinks && logo && loginBtn) {
+        const currentState = {
+            navbar: {
+                width: navbar.offsetWidth,
+                height: navbar.offsetHeight,
+                display: window.getComputedStyle(navbar).display
+            },
+            navContainer: {
+                width: navContainer.offsetWidth,
+                height: navContainer.offsetHeight,
+                justifyContent: window.getComputedStyle(navContainer).justifyContent
+            },
+            navLinks: {
+                width: navLinks.offsetWidth,
+                height: navLinks.offsetHeight,
+                gap: window.getComputedStyle(navLinks).gap
+            },
+            logo: {
+                width: logo.offsetWidth,
+                height: logo.offsetHeight,
+                margin: window.getComputedStyle(logo).margin
+            },
+            loginBtn: {
+                width: loginBtn.offsetWidth,
+                height: loginBtn.offsetHeight,
+                margin: window.getComputedStyle(loginBtn).margin
+            }
+        };
+        
+        // Compare and highlight differences
+        Object.keys(currentState).forEach(key => {
+            const initial = initialNavState[key];
+            const current = currentState[key];
+            
+            Object.keys(current).forEach(prop => {
+                if (initial[prop] !== current[prop]) {
+                    console.log(`🚨 ${key}.${prop} CHANGED:`, {
+                        from: initial[prop],
+                        to: current[prop],
+                        difference: typeof current[prop] === 'number' ? 
+                            current[prop] - initial[prop] : 'N/A'
+                    });
+                }
+            });
+        });
+        
+        console.log('✅ === STATE COMPARISON COMPLETE ===');
+    }
+}
+
 function forceNavigationLayoutRefresh() {
     console.log('🔄 Force refreshing navigation layout...');
     
@@ -226,6 +334,9 @@ function forceNavigationLayoutRefresh() {
         window.getComputedStyle(navLinks).gap;
         
         console.log('✅ Navigation layout refreshed');
+        
+        // Compare with initial state after refresh
+        compareWithInitialState();
     } else {
         console.warn('⚠️ Some navigation elements not found for layout refresh');
     }
@@ -474,6 +585,8 @@ function nextPage() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM Content Loaded - Starting initialization...');
+    
     // Add some interactive animations
     document.querySelectorAll('.feature-card, .stat-card, .package-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -507,4 +620,116 @@ document.addEventListener('DOMContentLoaded', function() {
     displayLeaderboard();
 
     console.log('My UTQH Platform initialized successfully!');
+    
+    // Capture initial state after everything is loaded
+    setTimeout(() => {
+        console.log('🔍 === FRESH PAGE LOAD - INITIAL STATE ANALYSIS ===');
+        
+        // Check home page state
+        const homePage = document.getElementById('home');
+        if (homePage) {
+            console.log('🏠 Home page state:', {
+                isActive: homePage.classList.contains('active'),
+                display: window.getComputedStyle(homePage).display,
+                width: homePage.offsetWidth,
+                height: homePage.offsetHeight
+            });
+        }
+        
+        // Check navbar state
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            console.log('🧭 Navbar initial state:', {
+                display: navbar.style.display,
+                computedDisplay: window.getComputedStyle(navbar).display,
+                width: navbar.offsetWidth,
+                height: navbar.offsetHeight,
+                background: window.getComputedStyle(navbar).background,
+                position: window.getComputedStyle(navbar).position
+            });
+        }
+        
+        // Check navigation container
+        const navContainer = document.querySelector('.nav-container');
+        if (navContainer) {
+            console.log('📦 Nav container initial state:', {
+                width: navContainer.offsetWidth,
+                height: navContainer.offsetHeight,
+                display: window.getComputedStyle(navContainer).display,
+                justifyContent: window.getComputedStyle(navContainer).justifyContent,
+                alignItems: window.getComputedStyle(navContainer).alignItems,
+                padding: window.getComputedStyle(navContainer).padding,
+                margin: window.getComputedStyle(navContainer).margin
+            });
+        }
+        
+        // Check logo
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            console.log('🎨 Logo initial state:', {
+                width: logo.offsetWidth,
+                height: logo.offsetHeight,
+                display: window.getComputedStyle(logo).display,
+                margin: window.getComputedStyle(logo).margin,
+                flexShrink: window.getComputedStyle(logo).flexShrink,
+                position: window.getComputedStyle(logo).position
+            });
+        }
+        
+        // Check navigation links
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks) {
+            console.log('🔗 Nav links initial state:', {
+                width: navLinks.offsetWidth,
+                height: navLinks.offsetHeight,
+                display: window.getComputedStyle(navLinks).display,
+                gap: window.getComputedStyle(navLinks).gap,
+                justifyContent: window.getComputedStyle(navLinks).justifyContent,
+                alignItems: window.getComputedStyle(navLinks).alignItems,
+                margin: window.getComputedStyle(navLinks).margin,
+                padding: window.getComputedStyle(navLinks).padding
+            });
+            
+            // Check individual nav link items
+            const navLinkItems = navLinks.querySelectorAll('a');
+            console.log('📋 Individual nav link items:', navLinkItems.length);
+            navLinkItems.forEach((link, index) => {
+                console.log(`  Link ${index + 1} (${link.textContent}):`, {
+                    width: link.offsetWidth,
+                    height: link.offsetHeight,
+                    margin: window.getComputedStyle(link).margin,
+                    padding: window.getComputedStyle(link).padding,
+                    display: window.getComputedStyle(link).display
+                });
+            });
+        }
+        
+        // Check login button
+        const loginBtn = document.querySelector('.login-btn');
+        if (loginBtn) {
+            console.log('🔐 Login button initial state:', {
+                width: loginBtn.offsetWidth,
+                height: loginBtn.offsetHeight,
+                display: window.getComputedStyle(loginBtn).display,
+                margin: window.getComputedStyle(loginBtn).margin,
+                padding: window.getComputedStyle(loginBtn).padding,
+                flexShrink: window.getComputedStyle(loginBtn).flexShrink
+            });
+        }
+        
+        // Check viewport and body
+        console.log('📱 Viewport and body state:', {
+            viewportWidth: window.innerWidth,
+            viewportHeight: window.innerHeight,
+            bodyWidth: document.body.offsetWidth,
+            bodyHeight: document.body.offsetHeight,
+            scrollWidth: document.body.scrollWidth,
+            scrollHeight: document.body.scrollHeight
+        });
+        
+        console.log('✅ === INITIAL STATE ANALYSIS COMPLETE ===');
+        
+        // Capture initial navigation state for comparison
+        captureInitialNavState();
+    }, 500); // Wait 500ms for all styles to be applied
 });
