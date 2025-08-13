@@ -40,6 +40,8 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
+    min-height: 70px;
 }
 
 .logo {
@@ -47,12 +49,18 @@ body {
     font-weight: bold;
     color: #1e40af;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .nav-links a {
@@ -63,6 +71,9 @@ body {
     border-radius: 25px;
     position: relative;
     font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-links a:hover {
@@ -83,6 +94,8 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .login-btn:hover {
