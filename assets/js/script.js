@@ -3,26 +3,72 @@ let currentPage = 'home';
 let currentDashboardTab = 'main';
 
 function showPage(pageId) {
+    console.log('🔄 showPage called with pageId:', pageId);
+    console.log('📍 Current page before change:', currentPage);
+    
     // Hide all pages
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
+    console.log('✅ All pages hidden');
     
     // Show selected page
-    document.getElementById(pageId).classList.add('active');
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        console.log('✅ Target page shown:', pageId);
+    } else {
+        console.error('❌ Target page not found:', pageId);
+    }
     
     // Show the top navigation bar for non-dashboard pages
     if (pageId !== 'dashboard') {
-        document.querySelector('.navbar').style.display = 'flex';
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.style.display = 'flex';
+            console.log('✅ Navbar displayed for page:', pageId);
+        } else {
+            console.error('❌ Navbar not found');
+        }
     }
     
     // Update navigation
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    console.log('🔗 Found nav links:', navLinks.length);
+    
+    navLinks.forEach(link => {
         link.classList.remove('active');
     });
-    event.target.classList.add('active');
+    
+    if (event && event.target) {
+        event.target.classList.add('active');
+        console.log('✅ Active nav link updated:', event.target.textContent);
+    } else {
+        console.warn('⚠️ No event target found for navigation update');
+    }
     
     currentPage = pageId;
+    console.log('📍 Current page updated to:', currentPage);
+    
+    // Log page dimensions and navbar state
+    setTimeout(() => {
+        const activePage = document.querySelector('.page.active');
+        const navbar = document.querySelector('.navbar');
+        if (activePage && navbar) {
+            console.log('📏 Active page dimensions:', {
+                width: activePage.offsetWidth,
+                height: activePage.offsetHeight,
+                scrollWidth: activePage.scrollWidth,
+                scrollHeight: activePage.scrollHeight
+            });
+            console.log('🧭 Navbar state:', {
+                display: navbar.style.display,
+                width: navbar.offsetWidth,
+                height: navbar.offsetHeight,
+                computedStyle: window.getComputedStyle(navbar).display
+            });
+        }
+    }, 100);
 }
 
 function showLogin() {
@@ -54,26 +100,65 @@ function handleLogin(event) {
 }
 
 function showDashboard() {
+    console.log('🔄 showDashboard called');
+    console.log('🔐 Login status:', isLoggedIn);
+    
     if (!isLoggedIn) {
+        console.log('❌ User not logged in, showing login modal');
         showLogin();
         return;
     }
+    
+    console.log('✅ User is logged in, proceeding to dashboard');
     
     // Hide all pages
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
+    console.log('✅ All pages hidden');
     
     // Show dashboard
-    document.getElementById('dashboard').classList.add('active');
+    const dashboard = document.getElementById('dashboard');
+    if (dashboard) {
+        dashboard.classList.add('active');
+        console.log('✅ Dashboard shown');
+    } else {
+        console.error('❌ Dashboard element not found');
+    }
     
     // Hide the top navigation bar
-    document.querySelector('.navbar').style.display = 'none';
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = 'none';
+        console.log('✅ Navbar hidden');
+    } else {
+        console.error('❌ Navbar not found');
+    }
     
     // Update navigation
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
         link.classList.remove('active');
     });
+    console.log('✅ Navigation links updated');
+    
+    // Log dashboard and navbar state
+    setTimeout(() => {
+        if (dashboard && navbar) {
+            console.log('📏 Dashboard dimensions:', {
+                width: dashboard.offsetWidth,
+                height: dashboard.offsetHeight,
+                scrollWidth: dashboard.scrollWidth,
+                scrollHeight: dashboard.scrollHeight
+            });
+            console.log('🧭 Navbar state after hiding:', {
+                display: navbar.style.display,
+                computedStyle: window.getComputedStyle(navbar).display,
+                width: navbar.offsetWidth,
+                height: navbar.offsetHeight
+            });
+        }
+    }, 100);
 }
 
 function showDashboardSection(sectionId) {
@@ -93,17 +178,33 @@ function showDashboardSection(sectionId) {
 }
 
 function logout() {
+    console.log('🔄 logout called');
+    
     isLoggedIn = false;
+    console.log('✅ Login status set to false');
     
     // Show the top navigation bar again
-    document.querySelector('.navbar').style.display = 'flex';
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = 'flex';
+        console.log('✅ Navbar displayed again');
+    } else {
+        console.error('❌ Navbar not found during logout');
+    }
     
     showPage('home');
     
     // Reset login button
-    document.querySelector('.login-btn').textContent = 'Login';
-    document.querySelector('.login-btn').onclick = showLogin;
+    const loginBtn = document.querySelector('.login-btn');
+    if (loginBtn) {
+        loginBtn.textContent = 'Login';
+        loginBtn.onclick = showLogin;
+        console.log('✅ Login button reset');
+    } else {
+        console.error('❌ Login button not found');
+    }
     
+    console.log('✅ Logout completed successfully');
     alert('Logged out successfully!');
 }
 
