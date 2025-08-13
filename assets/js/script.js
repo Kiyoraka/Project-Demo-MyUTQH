@@ -25,8 +25,14 @@ function showPage(pageId) {
     if (pageId !== 'dashboard') {
         const navbar = document.querySelector('.navbar');
         if (navbar) {
-            navbar.style.display = 'flex';
-            console.log('✅ Navbar displayed for page:', pageId);
+            // Don't force display: flex - let CSS handle it naturally
+            // Just ensure it's visible (remove any 'none' that might have been set)
+            if (navbar.style.display === 'none') {
+                navbar.style.display = '';
+                console.log('✅ Navbar visibility restored for page:', pageId);
+            } else {
+                console.log('✅ Navbar already visible for page:', pageId);
+            }
         } else {
             console.error('❌ Navbar not found');
         }
@@ -323,8 +329,9 @@ function forceNavigationLayoutRefresh() {
         navContainer.offsetHeight;
         navLinks.offsetHeight;
         
-        // Ensure proper display properties
-        navbar.style.display = 'flex';
+        // DON'T override the natural CSS display properties
+        // Let the CSS handle the display values naturally
+        // Only ensure the container and nav-links maintain flex (which they should from CSS)
         navContainer.style.display = 'flex';
         navLinks.style.display = 'flex';
         
@@ -333,7 +340,7 @@ function forceNavigationLayoutRefresh() {
         window.getComputedStyle(navContainer).justifyContent;
         window.getComputedStyle(navLinks).gap;
         
-        console.log('✅ Navigation layout refreshed');
+        console.log('✅ Navigation layout refreshed (preserving natural navbar display)');
         
         // Compare with initial state after refresh
         compareWithInitialState();
