@@ -54,88 +54,18 @@ function handleLogin(event) {
     const password = document.getElementById('password').value;
     
     if (email === 'admin@gmail.com' && password === 'admin123') {
-        isLoggedIn = true;
-        hideLogin();
-        showDashboard();
-        
-        // Update login button
-        document.querySelector('.login-btn').textContent = 'Dashboard';
-        document.querySelector('.login-btn').onclick = showDashboard;
-        
-        alert('Login successful! Welcome to the admin dashboard.');
+        // Redirect to the dedicated dashboard page
+        window.location.href = 'dashboard.html';
     } else {
         alert('Invalid credentials. Please use:\nEmail: admin@gmail.com\nPassword: admin123');
     }
 }
 
-function showDashboard() {
-    if (!isLoggedIn) {
-        showLogin();
-        return;
-    }
-    
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    // Show dashboard
-    const dashboard = document.getElementById('dashboard');
-    if (dashboard) {
-        dashboard.classList.add('active');
-    }
-    
-    // Hide the top navigation bar
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.style.display = 'none';
-    }
-    
-    // Update navigation
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-}
-
-function showDashboardSection(sectionId) {
-    // Hide all dashboard sections
-    document.querySelectorAll('.dashboard-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Show selected section
-    document.getElementById(sectionId + '-section').classList.add('active');
-    
-    // Update sidebar items
-    document.querySelectorAll('.sidebar-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    event.target.classList.add('active');
-}
+// Dashboard functionality moved to dashboard.html and dashboard.js
 
 
 
-function logout() {
-    isLoggedIn = false;
-    
-    // Show the top navigation bar again
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.style.display = 'flex';
-    }
-    
-    showPage('home');
-    
-    // Reset login button
-    const loginBtn = document.querySelector('.login-btn');
-    if (loginBtn) {
-        loginBtn.textContent = 'Login';
-        loginBtn.onclick = showLogin;
-    }
-    
-    alert('Logged out successfully!');
-}
+// Logout functionality moved to dashboard.html and dashboard.js
 
 function toggleStudents(teacherId) {
     const studentList = document.getElementById(teacherId);

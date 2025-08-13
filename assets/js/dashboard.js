@@ -57,7 +57,7 @@ function showDashboardSection(sectionName) {
 function logout() {
     // Show confirmation dialog
     if (confirm('Are you sure you want to logout?')) {
-        // Redirect to main page or show login modal
+        // Redirect to main page
         window.location.href = 'index.html';
         console.log('User logged out successfully');
     }
