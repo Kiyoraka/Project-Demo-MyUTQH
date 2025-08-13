@@ -50,6 +50,9 @@ function showPage(pageId) {
     currentPage = pageId;
     console.log('📍 Current page updated to:', currentPage);
     
+    // Force navigation layout refresh
+    forceNavigationLayoutRefresh();
+    
     // Log page dimensions and navbar state
     setTimeout(() => {
         const activePage = document.querySelector('.page.active');
@@ -67,6 +70,28 @@ function showPage(pageId) {
                 height: navbar.offsetHeight,
                 computedStyle: window.getComputedStyle(navbar).display
             });
+            
+            // Log navbar container and nav-links dimensions
+            const navContainer = document.querySelector('.nav-container');
+            const navLinks = document.querySelector('.nav-links');
+            if (navContainer && navLinks) {
+                console.log('📐 Nav container dimensions:', {
+                    width: navContainer.offsetWidth,
+                    height: navContainer.offsetHeight,
+                    computedStyle: window.getComputedStyle(navContainer).display,
+                    justifyContent: window.getComputedStyle(navContainer).justifyContent
+                });
+                console.log('🔗 Nav links dimensions:', {
+                    width: navLinks.offsetWidth,
+                    height: navLinks.offsetHeight,
+                    computedStyle: window.getComputedStyle(navLinks).display,
+                    gap: window.getComputedStyle(navLinks).gap
+                });
+            }
+            
+            // Force a layout recalculation
+            navbar.offsetHeight; // Trigger reflow
+            console.log('🔄 Layout recalculation triggered');
         }
     }, 100);
 }
@@ -175,6 +200,35 @@ function showDashboardSection(sectionId) {
         item.classList.remove('active');
     });
     event.target.classList.add('active');
+}
+
+function forceNavigationLayoutRefresh() {
+    console.log('🔄 Force refreshing navigation layout...');
+    
+    const navbar = document.querySelector('.navbar');
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (navbar && navContainer && navLinks) {
+        // Force layout recalculation
+        navbar.offsetHeight;
+        navContainer.offsetHeight;
+        navLinks.offsetHeight;
+        
+        // Ensure proper display properties
+        navbar.style.display = 'flex';
+        navContainer.style.display = 'flex';
+        navLinks.style.display = 'flex';
+        
+        // Force CSS recalculation
+        window.getComputedStyle(navbar).display;
+        window.getComputedStyle(navContainer).justifyContent;
+        window.getComputedStyle(navLinks).gap;
+        
+        console.log('✅ Navigation layout refreshed');
+    } else {
+        console.warn('⚠️ Some navigation elements not found for layout refresh');
+    }
 }
 
 function logout() {
