@@ -952,7 +952,7 @@ input:checked + .toggle-slider:before {
 }
 
 .modal-header h3 {
-    color: #1e40af;
+    color: white;
     font-size: 1.3rem;
     font-weight: 600;
     margin: 0;
@@ -961,7 +961,7 @@ input:checked + .toggle-slider:before {
 .close-btn {
     background: none;
     border: none;
-    color: #1e40af;
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
@@ -976,7 +976,7 @@ input:checked + .toggle-slider:before {
 
 .close-btn:hover {
     background: rgba(255, 255, 255, 0.2);
-    color: #1e40af;
+    color: white;
 }
 
 .modal-body {
@@ -984,7 +984,7 @@ input:checked + .toggle-slider:before {
 }
 
 .modal-body p {
-    color: #1e40af;
+    color: white;
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
